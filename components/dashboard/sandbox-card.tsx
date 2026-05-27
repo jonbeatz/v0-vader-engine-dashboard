@@ -59,7 +59,7 @@ export function SandboxCard({
   const config = statusConfig[status]
 
   return (
-    <Card className="card-hover relative overflow-hidden border-border/60" data-testid={`sandbox-card-${port}`}>
+    <Card className="card-glass-gleam relative overflow-hidden border-border/60" data-testid={`sandbox-card-${port}`}>
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

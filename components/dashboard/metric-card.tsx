@@ -39,7 +39,7 @@ export function MetricCard({
   }
 
   return (
-    <Card className={cn("card-hover overflow-hidden", variantStyles[variant], className)}>
+    <Card className={cn("card-glass-gleam overflow-hidden", variantStyles[variant], className)}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
           {title}

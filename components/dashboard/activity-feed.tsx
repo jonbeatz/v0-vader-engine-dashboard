@@ -49,7 +49,7 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
   }
 
   return (
-    <Card className="card-hover h-full border-border/60" data-testid="activity-feed">
+    <Card className="card-glass-gleam h-full border-border/60" data-testid="activity-feed">
       <CardHeader className="flex flex-row items-center gap-2 pb-3">
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/50">
           <Clock className="h-3.5 w-3.5 text-muted-foreground" />

@@ -34,7 +34,7 @@ export function SupportTickets({ tickets }: SupportTicketsProps) {
   }
 
   return (
-    <Card className="card-hover h-full border-border/60">
+    <Card className="card-glass-gleam h-full border-border/60">
       <CardHeader className="flex flex-row items-center justify-between pb-3">
         <div className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/50">
