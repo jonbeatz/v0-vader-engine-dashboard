@@ -253,18 +253,10 @@ button[data-variant="outline"]:hover {
   background: rgba(18, 18, 18, 0.8) !important;
 }
 
-/* 6. Hover Effects - subtle scale on card hover */
+/* 6. Hover Effects - color only, no scale */
 .card-hover:hover,
 [data-slot="card"]:hover {
-  transform: scale(1.02);
   border-color: rgba(224, 43, 32, 0.3);
-}
-
-/* Ensure cards don't shift layout on hover */
-.card-hover,
-[data-slot="card"] {
-  transform-origin: center;
-  will-change: transform;
 }
 
 /* 7. Typography - ensure Geist fonts are applied */
