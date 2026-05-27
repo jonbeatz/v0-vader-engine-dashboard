@@ -30,13 +30,20 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[220px] flex-col bg-sidebar text-sidebar-foreground">
-      <div className="flex h-12 items-center gap-2 border-b border-sidebar-border px-4">
-        <Hexagon className="h-6 w-6 text-sidebar-primary" />
-        <span className="font-semibold tracking-tight">Vader Engine</span>
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[220px] flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground">
+      {/* Logo Section */}
+      <div className="flex h-12 items-center gap-2.5 border-b border-sidebar-border px-4">
+        <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10">
+          <Hexagon className="h-4 w-4 text-primary" />
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold tracking-tight text-sidebar-foreground">Vader</span>
+          <span className="text-[10px] font-medium uppercase tracking-widest text-primary">Engine</span>
+        </div>
       </div>
       
-      <nav className="flex-1 space-y-1 p-3">
+      {/* Navigation */}
+      <nav className="flex-1 space-y-0.5 px-2.5 py-3">
         {navItems.map((item) => {
           const isActive = pathname === item.href || 
             (item.href !== "/" && pathname.startsWith(item.href))
@@ -47,23 +54,35 @@ export function Sidebar() {
               href={item.href}
               data-testid={item.testId}
               className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "group flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] font-medium transition-all duration-150",
                 isActive
-                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                  : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+                  ? "bg-sidebar-accent text-primary"
+                  : "text-sidebar-foreground/60 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
               )}
             >
-              <item.icon className="h-4 w-4" />
+              <item.icon className={cn(
+                "h-4 w-4 transition-colors",
+                isActive ? "text-primary" : "text-sidebar-foreground/50 group-hover:text-sidebar-foreground/70"
+              )} />
               {item.label}
+              {isActive && (
+                <span className="ml-auto h-1.5 w-1.5 rounded-full bg-primary" />
+              )}
             </Link>
           )
         })}
       </nav>
       
+      {/* Version Footer */}
       <div className="border-t border-sidebar-border p-3">
-        <div className="rounded-md bg-sidebar-accent/50 px-3 py-2">
-          <p className="text-xs font-medium text-sidebar-foreground/70">Version</p>
-          <p className="font-mono text-sm">v2.5.0-Engine</p>
+        <div className="flex items-center justify-between rounded-lg bg-sidebar-accent/40 px-3 py-2">
+          <div>
+            <p className="text-[10px] font-medium uppercase tracking-wider text-sidebar-foreground/50">Version</p>
+            <p className="font-mono text-xs text-sidebar-foreground/80">v2.5.0-Engine</p>
+          </div>
+          <div className="flex h-2 w-2 items-center justify-center">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
+          </div>
         </div>
       </div>
     </aside>

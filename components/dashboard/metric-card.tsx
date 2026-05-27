@@ -25,39 +25,46 @@ export function MetricCard({
   className,
 }: MetricCardProps) {
   const variantStyles = {
-    default: "border-border",
-    success: "border-success/30 bg-success/5",
-    warning: "border-warning/30 bg-warning/5",
-    destructive: "border-destructive/30 bg-destructive/5",
+    default: "border-border/60 bg-card",
+    success: "border-primary/20 bg-primary/[0.03]",
+    warning: "border-warning/20 bg-warning/[0.03]",
+    destructive: "border-destructive/20 bg-destructive/[0.03]",
   }
 
-  const iconStyles = {
-    default: "text-muted-foreground",
-    success: "text-success",
-    warning: "text-warning",
-    destructive: "text-destructive",
+  const iconContainerStyles = {
+    default: "bg-muted/50 text-muted-foreground",
+    success: "bg-primary/10 text-primary",
+    warning: "bg-warning/10 text-warning",
+    destructive: "bg-destructive/10 text-destructive",
   }
 
   return (
-    <Card className={cn(variantStyles[variant], className)}>
+    <Card className={cn("card-hover overflow-hidden", variantStyles[variant], className)}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
           {title}
         </CardTitle>
-        <Icon className={cn("h-4 w-4", iconStyles[variant])} />
+        <div className={cn("flex h-7 w-7 items-center justify-center rounded-lg", iconContainerStyles[variant])}>
+          <Icon className="h-3.5 w-3.5" />
+        </div>
       </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold tabular-nums">{value}</div>
+      <CardContent className="pt-0">
+        <div className="flex items-baseline gap-2">
+          <span className="text-3xl font-bold tabular-nums tracking-tight">{value}</span>
+          {trend && (
+            <span className={cn(
+              "text-xs font-medium",
+              trend.value >= 0 ? "text-primary" : "text-destructive"
+            )}>
+              {trend.value >= 0 ? "+" : ""}{trend.value}%
+            </span>
+          )}
+        </div>
         {subtitle && (
-          <p className="text-xs text-muted-foreground">{subtitle}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{subtitle}</p>
         )}
         {trend && (
-          <p className={cn(
-            "mt-1 text-xs",
-            trend.value >= 0 ? "text-success" : "text-destructive"
-          )}>
-            {trend.value >= 0 ? "+" : ""}{trend.value}% {trend.label}
-          </p>
+          <p className="mt-0.5 text-[10px] text-muted-foreground/70">{trend.label}</p>
         )}
       </CardContent>
     </Card>

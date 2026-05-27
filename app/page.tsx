@@ -6,7 +6,7 @@ import { SandboxCard } from "@/components/dashboard/sandbox-card"
 import { ActivityFeed } from "@/components/dashboard/activity-feed"
 import { SupportTickets } from "@/components/dashboard/support-tickets"
 import { Button } from "@/components/ui/button"
-import { Gauge, Cpu, ShieldCheck, Play } from "lucide-react"
+import { Gauge, Cpu, ShieldCheck, Play, Sparkles } from "lucide-react"
 import { toast } from "sonner"
 
 // Mock data
@@ -54,6 +54,7 @@ const mockTickets = [
     priority: "high" as const,
     status: "in-progress" as const,
     createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
+    author: "Marcus Johnson",
   },
   {
     id: "VDR-1023",
@@ -61,6 +62,7 @@ const mockTickets = [
     priority: "medium" as const,
     status: "open" as const,
     createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000),
+    author: "Keisha Williams",
   },
   {
     id: "VDR-1022",
@@ -68,6 +70,7 @@ const mockTickets = [
     priority: "low" as const,
     status: "open" as const,
     createdAt: new Date(Date.now() - 8 * 60 * 60 * 1000),
+    author: "Devon Carter",
   },
   {
     id: "VDR-1021",
@@ -75,6 +78,7 @@ const mockTickets = [
     priority: "critical" as const,
     status: "resolved" as const,
     createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000),
+    author: "Jasmine Lee",
   },
 ]
 
@@ -114,14 +118,22 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
+      {/* Header Section */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-          <p className="text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-semibold tracking-tight">Dashboard</h1>
+            <Sparkles className="h-4 w-4 text-primary" />
+          </div>
+          <p className="mt-0.5 text-sm text-muted-foreground">
             Monitor your development environment and operations
           </p>
         </div>
-        <Button onClick={handleRunGrader} data-testid="run-grader-button">
+        <Button 
+          onClick={handleRunGrader} 
+          data-testid="run-grader-button"
+          className="bg-primary text-primary-foreground hover:bg-primary/90"
+        >
           <Play className="mr-2 h-4 w-4" />
           Run Grader
         </Button>
@@ -157,7 +169,10 @@ export default function DashboardPage() {
 
       {/* Row 2: Sandbox Cards */}
       <div>
-        <h2 className="mb-3 text-lg font-medium">Active Sandboxes</h2>
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Active Sandboxes</h2>
+          <span className="text-xs text-muted-foreground">{sandboxes.filter(s => s.status === 'running').length} running</span>
+        </div>
         <div className="grid gap-4 md:grid-cols-3">
           {sandboxes.map((sandbox) => (
             <SandboxCard

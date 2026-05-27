@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Badge } from "@/components/ui/badge"
 import { formatDistanceToNow } from "date-fns"
+import { Clock, Circle } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface ActivityItem {
   id: string
@@ -16,50 +17,69 @@ interface ActivityFeedProps {
 }
 
 export function ActivityFeed({ activities }: ActivityFeedProps) {
-  const typeStyles = {
-    deploy: "bg-success/10 text-success",
-    build: "bg-chart-2/10 text-chart-2",
-    error: "bg-destructive/10 text-destructive",
-    info: "bg-muted text-muted-foreground",
-  }
-
-  const typeLabels = {
-    deploy: "Deploy",
-    build: "Build",
-    error: "Error",
-    info: "Info",
+  const typeConfig = {
+    deploy: { 
+      dot: "bg-primary",
+      label: "Deploy"
+    },
+    build: { 
+      dot: "bg-chart-2",
+      label: "Build"
+    },
+    error: { 
+      dot: "bg-destructive",
+      label: "Error"
+    },
+    info: { 
+      dot: "bg-muted-foreground/50",
+      label: "Info"
+    },
   }
 
   return (
-    <Card className="h-full">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-base font-medium">Activity Feed</CardTitle>
+    <Card className="card-hover h-full border-border/60">
+      <CardHeader className="flex flex-row items-center gap-2 pb-3">
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/50">
+          <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+        </div>
+        <CardTitle className="text-sm font-semibold">Activity Pulse</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <ScrollArea className="h-[240px] px-4 pb-4">
-          <div className="space-y-3">
-            {activities.map((activity) => (
-              <div
-                key={activity.id}
-                className="flex items-start gap-3 rounded-md border border-border bg-muted/30 p-3"
-              >
-                <Badge variant="secondary" className={typeStyles[activity.type]}>
-                  {typeLabels[activity.type]}
-                </Badge>
-                <div className="flex-1 space-y-1">
-                  <p className="text-sm leading-tight">{activity.message}</p>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    {activity.project && (
-                      <>
-                        <span className="font-mono">{activity.project}</span>
-                        <span>•</span>
-                      </>
+        <ScrollArea className="h-[260px] px-4 pb-4">
+          <div className="space-y-1">
+            {activities.map((activity, index) => {
+              const config = typeConfig[activity.type]
+              return (
+                <div
+                  key={activity.id}
+                  className={cn(
+                    "group relative flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-muted/30",
+                    index !== activities.length - 1 && "border-b border-border/40"
+                  )}
+                >
+                  {/* Status dot with line */}
+                  <div className="relative flex flex-col items-center">
+                    <Circle className={cn("h-2.5 w-2.5", config.dot)} style={{ fill: 'currentColor' }} />
+                    {index !== activities.length - 1 && (
+                      <div className="absolute top-3 h-full w-px bg-border/40" />
                     )}
-                    <span>{formatDistanceToNow(activity.timestamp, { addSuffix: true })}</span>
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium leading-tight text-foreground">{activity.message}</p>
+                    <div className="mt-1 flex items-center gap-2 text-[11px] text-muted-foreground">
+                      {activity.project && (
+                        <>
+                          <span className="font-mono text-muted-foreground/80">{activity.project}</span>
+                          <span className="text-muted-foreground/40">•</span>
+                        </>
+                      )}
+                      <span>{formatDistanceToNow(activity.timestamp, { addSuffix: true })}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </ScrollArea>
       </CardContent>
