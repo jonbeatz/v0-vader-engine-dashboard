@@ -25,15 +25,15 @@ export function MetricCard({
   className,
 }: MetricCardProps) {
   const variantStyles = {
-    default: "border-border/60 bg-card",
-    success: "border-primary/20 bg-primary/[0.03]",
+    default: "border-border bg-card",
+    success: "border-success/20 bg-success/[0.03]",
     warning: "border-warning/20 bg-warning/[0.03]",
     destructive: "border-destructive/20 bg-destructive/[0.03]",
   }
 
   const iconContainerStyles = {
-    default: "bg-muted/50 text-muted-foreground",
-    success: "bg-primary/10 text-primary",
+    default: "bg-muted text-muted-foreground",
+    success: "bg-success/10 text-success",
     warning: "bg-warning/10 text-warning",
     destructive: "bg-destructive/10 text-destructive",
   }
@@ -54,7 +54,7 @@ export function MetricCard({
           {trend && (
             <span className={cn(
               "text-xs font-medium",
-              trend.value >= 0 ? "text-primary" : "text-destructive"
+              trend.value >= 0 ? "text-success" : "text-destructive"
             )}>
               {trend.value >= 0 ? "+" : ""}{trend.value}%
             </span>

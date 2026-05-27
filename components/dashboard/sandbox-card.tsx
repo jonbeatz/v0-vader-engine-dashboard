@@ -40,8 +40,8 @@ export function SandboxCard({
 }: SandboxCardProps) {
   const statusConfig = {
     running: { 
-      badge: "bg-primary/10 text-primary border-primary/20",
-      dot: "bg-primary",
+      badge: "bg-success/10 text-success border-success/20",
+      dot: "bg-success",
       label: "Running"
     },
     stopped: { 
@@ -63,7 +63,7 @@ export function SandboxCard({
       {/* Status indicator line */}
       <div className={cn(
         "absolute left-0 top-0 h-full w-0.5",
-        status === "running" ? "bg-primary" : status === "error" ? "bg-destructive" : "bg-muted-foreground/30"
+        status === "running" ? "bg-success" : status === "error" ? "bg-destructive" : "bg-muted-foreground/30"
       )} />
       
       <CardHeader className="pb-2 pl-4">
@@ -97,7 +97,7 @@ export function SandboxCard({
           {status === "stopped" ? (
             <Button 
               size="sm" 
-              className="flex-1 bg-primary/10 text-primary hover:bg-primary/20" 
+              className="flex-1 bg-success/10 text-success hover:bg-success/20" 
               onClick={onStart}
             >
               <Play className="mr-1.5 h-3 w-3" />

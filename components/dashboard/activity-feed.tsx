@@ -31,11 +31,11 @@ function formatShortTime(date: Date): string {
 export function ActivityFeed({ activities }: ActivityFeedProps) {
   const typeConfig = {
     deploy: { 
-      dot: "bg-primary",
+      dot: "bg-success",
       label: "Deploy"
     },
     build: { 
-      dot: "bg-chart-2",
+      dot: "bg-chart-4",
       label: "Build"
     },
     error: { 

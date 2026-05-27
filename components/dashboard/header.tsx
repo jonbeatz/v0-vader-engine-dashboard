@@ -25,8 +25,8 @@ export function Header({ onCommandOpen }: HeaderProps) {
       {/* Left: Status + Date/Time */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1.5 text-xs">
-          <Circle className="h-2 w-2 fill-primary text-primary" />
-          <span className="font-medium text-primary">Online</span>
+          <Circle className="h-2 w-2 fill-success text-success" />
+          <span className="font-medium text-success">Online</span>
         </div>
         <div className="h-4 w-px bg-border" />
         <div className="flex items-center gap-2 text-xs text-muted-foreground">

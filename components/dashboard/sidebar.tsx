@@ -30,9 +30,9 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[220px] flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground">
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[220px] flex-col border-r border-border bg-sidebar text-sidebar-foreground">
       {/* Logo Section */}
-      <div className="flex h-12 items-center gap-2.5 border-b border-sidebar-border px-4">
+      <div className="flex h-12 items-center gap-2.5 border-b border-border px-4">
         <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10">
           <Hexagon className="h-4 w-4 text-primary" />
         </div>
@@ -74,14 +74,14 @@ export function Sidebar() {
       </nav>
       
       {/* Version Footer */}
-      <div className="border-t border-sidebar-border p-3">
+      <div className="border-t border-border p-3">
         <div className="flex items-center justify-between rounded-lg bg-sidebar-accent/40 px-3 py-2">
           <div>
             <p className="text-[10px] font-medium uppercase tracking-wider text-sidebar-foreground/50">Version</p>
             <p className="font-mono text-xs text-sidebar-foreground/80">v2.5.0-Engine</p>
           </div>
           <div className="flex h-2 w-2 items-center justify-center">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-success" />
           </div>
         </div>
       </div>
