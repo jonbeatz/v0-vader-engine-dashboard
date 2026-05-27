@@ -208,23 +208,23 @@ button,
   transition: all 0.2s ease;
 }
 
-/* 3. Interactive Glow - Vader Red on buttons hover/active */
+/* 3. Interactive Glow - subtle on buttons, minimal glow */
 button:hover,
 [role="button"]:hover,
 [data-slot="button"]:hover {
-  box-shadow: 0 0 8px rgba(224, 43, 32, 0.5);
+  /* Minimal glow on buttons */
 }
 
 button:active,
 [role="button"]:active,
 [data-slot="button"]:active {
-  box-shadow: 0 0 12px rgba(224, 43, 32, 0.7);
+  /* Slight press feedback */
 }
 
-/* Exclude ghost/outline buttons from aggressive glow */
+/* Exclude ghost/outline buttons from glow */
 button[data-variant="ghost"]:hover,
 button[data-variant="outline"]:hover {
-  box-shadow: 0 0 4px rgba(224, 43, 32, 0.3);
+  /* No glow */
 }
 
 /* 4. Status Indicators - green glow on success dots */
@@ -253,17 +253,16 @@ button[data-variant="outline"]:hover {
   background: rgba(18, 18, 18, 0.8) !important;
 }
 
-/* 6. Border Glow effect - outer edge only, NO internal elements, NO scale */
+/* 6. Border Glow effect - subtle light grey, outer edge only, NO scale */
 .card-glass-gleam {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-glass-gleam:hover {
-  border-color: rgba(224, 43, 32, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
   box-shadow: 
     0 4px 12px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(224, 43, 32, 0.2),
-    0 0 20px rgba(224, 43, 32, 0.15);
+    0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 /* Remove ALL scale/transform from cards */
