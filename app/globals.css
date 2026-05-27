@@ -253,44 +253,60 @@ button[data-variant="outline"]:hover {
   background: rgba(18, 18, 18, 0.8) !important;
 }
 
-/* 6. Glass Gleam effect for Vader Engine cards - NO scale */
+/* 6. Border Gleam effect for Vader Engine cards - edge only, NO scale */
 .card-glass-gleam {
   position: relative;
   overflow: hidden;
 }
 
+/* Top edge gleam */
 .card-glass-gleam::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    transparent 48%,
-    rgba(224, 43, 32, 0.15) 50%,
-    transparent 52%
-  );
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(224, 43, 32, 0.6), transparent);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
   pointer-events: none;
-  z-index: 1;
+  z-index: 10;
+}
+
+/* Left edge gleam */
+.card-glass-gleam::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(224, 43, 32, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .card-glass-gleam:hover::before {
   opacity: 1;
-  animation: glassSweep 1.5s linear infinite;
+  animation: borderGleamHorizontal 1.5s ease-in-out infinite;
 }
 
-@keyframes glassSweep {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.card-glass-gleam:hover::after {
+  opacity: 1;
+  animation: borderGleamVertical 1.5s ease-in-out infinite;
 }
 
-/* Ensure card content stays above the gleam */
-.card-glass-gleam > * {
-  position: relative;
-  z-index: 2;
+@keyframes borderGleamHorizontal {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes borderGleamVertical {
+  0% { top: -100%; }
+  100% { top: 200%; }
 }
 
 /* Remove ALL scale/transform from cards */
