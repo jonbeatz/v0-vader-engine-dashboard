@@ -60,13 +60,7 @@ export function SandboxCard({
 
   return (
     <Card className="card-hover relative overflow-hidden border-border/60" data-testid={`sandbox-card-${port}`}>
-      {/* Status indicator line */}
-      <div className={cn(
-        "absolute left-0 top-0 h-full w-0.5",
-        status === "running" ? "bg-success" : status === "error" ? "bg-destructive" : "bg-muted-foreground/30"
-      )} />
-      
-      <CardHeader className="pb-2 pl-4">
+      <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Circle className={cn("h-2 w-2", config.dot, status === "running" && "animate-pulse")} style={{ fill: 'currentColor' }} />
@@ -79,7 +73,7 @@ export function SandboxCard({
         <p className="font-mono text-lg font-semibold text-foreground">:{port}</p>
       </CardHeader>
       
-      <CardContent className="pl-4">
+      <CardContent>
         {status === "running" && (
           <div className="mb-3 grid grid-cols-2 gap-3 rounded-lg bg-muted/30 p-2.5">
             <div>
