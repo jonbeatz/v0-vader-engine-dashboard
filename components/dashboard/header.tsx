@@ -52,10 +52,6 @@ export function Header({ onCommandOpen }: HeaderProps) {
       
       {/* Right: User Avatar */}
       <div className="flex items-center gap-3">
-        <div className="text-right text-xs">
-          <p className="font-medium text-foreground">Vader Construct</p>
-          <p className="text-muted-foreground">Developer</p>
-        </div>
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
           VE
         </div>

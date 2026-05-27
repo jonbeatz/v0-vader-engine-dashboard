@@ -1,22 +1,39 @@
-'use client'
+"use client"
 
-import { Toaster as Sonner, ToasterProps } from 'sonner'
+import { Toaster as Sonner, ToasterProps } from "sonner"
 
 const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       theme="dark"
       className="toaster group"
+      style={
+        {
+          "--normal-bg": "#1c1c1c",
+          "--normal-border": "#2d2d2d",
+          "--normal-text": "#f0f0f0",
+          "--success-bg": "#1c1c1c",
+          "--success-border": "rgba(29, 158, 117, 0.3)",
+          "--success-text": "#1D9E75",
+          "--error-bg": "#1c1c1c",
+          "--error-border": "rgba(224, 43, 32, 0.3)",
+          "--error-text": "#e02b20",
+          "--warning-bg": "#1c1c1c",
+          "--warning-border": "rgba(186, 117, 23, 0.3)",
+          "--warning-text": "#BA7517",
+        } as React.CSSProperties
+      }
       toastOptions={{
+        style: {
+          background: "#1c1c1c",
+          border: "1px solid #2d2d2d",
+          color: "#f0f0f0",
+        },
         classNames: {
-          toast: "group toast group-[.toaster]:bg-card group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
-          description: "group-[.toast]:text-muted-foreground",
-          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
-          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
-          success: "group-[.toaster]:bg-card group-[.toaster]:text-success group-[.toaster]:border-success/20",
-          error: "group-[.toaster]:bg-card group-[.toaster]:text-destructive group-[.toaster]:border-destructive/20",
-          warning: "group-[.toaster]:bg-card group-[.toaster]:text-warning group-[.toaster]:border-warning/20",
-          info: "group-[.toaster]:bg-card group-[.toaster]:text-foreground group-[.toaster]:border-border",
+          toast: "group toast",
+          description: "text-[#a0a0a0]",
+          actionButton: "bg-[#e02b20] text-white",
+          cancelButton: "bg-[#2d2d2d] text-[#a0a0a0]",
         },
       }}
       {...props}
