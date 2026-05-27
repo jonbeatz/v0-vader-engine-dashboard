@@ -21,7 +21,7 @@ export function Header({ onCommandOpen }: HeaderProps) {
   })
 
   return (
-    <header className="fixed left-[220px] right-0 top-0 z-30 flex h-12 items-center justify-between border-b border-border bg-background px-4">
+    <header className="header-glass fixed left-[220px] right-0 top-0 z-30 flex h-12 items-center justify-between border-b border-border px-4">
       {/* Left: Status + Date/Time */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1.5 text-xs">

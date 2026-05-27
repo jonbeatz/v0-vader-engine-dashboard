@@ -110,8 +110,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --font-sans: var(--font-geist-sans), 'Geist', 'Geist Fallback', system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), 'Geist Mono', 'Geist Mono Fallback', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -170,36 +170,122 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: oklch(0.18 0 0);
+  background: #1c1c1c;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.30 0 0);
+  background: #2d2d2d;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.35 0 0);
+  background: #3d3d3d;
+}
+
+/* ============================================
+   MASTER JEDI POLISH - Version 10
+   ============================================ */
+
+/* 1. Card Definition - subtle border and shadow */
+.card-definition {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Apply to all Card components */
+[data-slot="card"],
+.card-hover {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. Animations - smooth transitions */
+button,
+[role="button"],
+.card-hover,
+[data-slot="card"],
+[data-slot="button"] {
+  transition: all 0.2s ease;
+}
+
+/* 3. Interactive Glow - Vader Red on buttons hover/active */
+button:hover,
+[role="button"]:hover,
+[data-slot="button"]:hover {
+  box-shadow: 0 0 8px rgba(224, 43, 32, 0.5);
+}
+
+button:active,
+[role="button"]:active,
+[data-slot="button"]:active {
+  box-shadow: 0 0 12px rgba(224, 43, 32, 0.7);
+}
+
+/* Exclude ghost/outline buttons from aggressive glow */
+button[data-variant="ghost"]:hover,
+button[data-variant="outline"]:hover {
+  box-shadow: 0 0 4px rgba(224, 43, 32, 0.3);
+}
+
+/* 4. Status Indicators - green glow on success dots */
+.status-dot-success,
+.bg-success {
+  box-shadow: 0 0 6px rgba(29, 158, 117, 0.5);
+}
+
+/* Pulsing animation for active status */
+@keyframes status-pulse {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(29, 158, 117, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(29, 158, 117, 0.8);
+  }
+}
+
+.status-dot-pulse {
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* 5. Header Glass effect */
+.header-glass {
+  backdrop-filter: blur(8px);
+  background: rgba(18, 18, 18, 0.8) !important;
+}
+
+/* 6. Hover Effects - subtle scale on card hover */
+.card-hover:hover,
+[data-slot="card"]:hover {
+  transform: scale(1.02);
+  border-color: rgba(224, 43, 32, 0.3);
+}
+
+/* Ensure cards don't shift layout on hover */
+.card-hover,
+[data-slot="card"] {
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* 7. Typography - ensure Geist fonts are applied */
+.font-mono,
+code,
+pre,
+.tabular-nums,
+[data-mono="true"] {
+  font-family: var(--font-geist-mono), 'Geist Mono', monospace !important;
 }
 
 /* Subtle glow effect for primary elements */
 .glow-primary {
-  box-shadow: 0 0 20px oklch(0.55 0.22 25 / 0.15);
-}
-
-/* Card hover effects */
-.card-hover {
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.card-hover:hover {
-  border-color: oklch(0.55 0.22 25 / 0.3);
+  box-shadow: 0 0 20px rgba(224, 43, 32, 0.15);
 }
 
 /* Force dark theme on Sonner toasts */
 [data-sonner-toaster] [data-sonner-toast] {
   background: #1c1c1c !important;
-  border: 1px solid #2d2d2d !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
   color: #f0f0f0 !important;
 }
 
@@ -233,4 +319,17 @@
 [data-sonner-toaster] [data-sonner-toast][data-type="warning"] {
   background: #1c1c1c !important;
   border-color: rgba(186, 117, 23, 0.3) !important;
+}
+
+/* Command palette styling */
+[data-slot="command"] {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Dialog/AlertDialog styling */
+[data-slot="dialog-content"],
+[data-slot="alert-dialog-content"] {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
