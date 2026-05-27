@@ -253,60 +253,17 @@ button[data-variant="outline"]:hover {
   background: rgba(18, 18, 18, 0.8) !important;
 }
 
-/* 6. Border Gleam effect for Vader Engine cards - edge only, NO scale */
+/* 6. Border Glow effect - outer edge only, NO internal elements, NO scale */
 .card-glass-gleam {
-  position: relative;
-  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Top edge gleam */
-.card-glass-gleam::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(224, 43, 32, 0.6), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 10;
-}
-
-/* Left edge gleam */
-.card-glass-gleam::after {
-  content: "";
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, rgba(224, 43, 32, 0.6), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.card-glass-gleam:hover::before {
-  opacity: 1;
-  animation: borderGleamHorizontal 1.5s ease-in-out infinite;
-}
-
-.card-glass-gleam:hover::after {
-  opacity: 1;
-  animation: borderGleamVertical 1.5s ease-in-out infinite;
-}
-
-@keyframes borderGleamHorizontal {
-  0% { left: -100%; }
-  100% { left: 200%; }
-}
-
-@keyframes borderGleamVertical {
-  0% { top: -100%; }
-  100% { top: 200%; }
+.card-glass-gleam:hover {
+  border-color: rgba(224, 43, 32, 0.4) !important;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(224, 43, 32, 0.2),
+    0 0 20px rgba(224, 43, 32, 0.15);
 }
 
 /* Remove ALL scale/transform from cards */
