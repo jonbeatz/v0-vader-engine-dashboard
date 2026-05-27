@@ -63,7 +63,7 @@ export function CommandPalette({
   }, [onOpenChange])
 
   return (
-    <CommandDialog open={open} onOpenChange={onOpenChange}>
+    <CommandDialog open={open} onOpenChange={onOpenChange} data-testid="command-palette">
       <div className="flex items-center gap-2 border-b border-border/60 px-3 py-2">
         <Sparkles className="h-4 w-4 text-primary" />
         <span className="text-xs font-medium text-muted-foreground">Vader Command Center</span>

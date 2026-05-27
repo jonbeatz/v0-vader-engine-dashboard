@@ -15,7 +15,7 @@ const mockActivities = [
     id: "1",
     type: "deploy" as const,
     message: "Successfully deployed to production",
-    timestamp: new Date(Date.now() - 5 * 60 * 1000),
+    timestamp: new Date(Date.now() - 2 * 60 * 1000),
     project: "vader-api",
   },
   {
@@ -29,20 +29,20 @@ const mockActivities = [
     id: "3",
     type: "error" as const,
     message: "Failed to connect to database pool",
-    timestamp: new Date(Date.now() - 30 * 60 * 1000),
+    timestamp: new Date(Date.now() - 45 * 60 * 1000),
     project: "vader-worker",
   },
   {
     id: "4",
     type: "info" as const,
     message: "Scheduled maintenance window starting",
-    timestamp: new Date(Date.now() - 45 * 60 * 1000),
+    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
   },
   {
     id: "5",
     type: "deploy" as const,
     message: "Rollback completed successfully",
-    timestamp: new Date(Date.now() - 60 * 60 * 1000),
+    timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000),
     project: "vader-api",
   },
 ]
@@ -159,8 +159,8 @@ export default function DashboardPage() {
         />
         <MetricCard
           title="Integrity Score"
-          value="98.7"
-          subtitle="Last check: 5 min ago"
+          value="61/61"
+          subtitle="All checks passing"
           icon={ShieldCheck}
           trend={{ value: 0.3, label: "from last scan" }}
           variant="success"

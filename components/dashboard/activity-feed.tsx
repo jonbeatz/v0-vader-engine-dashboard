@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { formatDistanceToNow } from "date-fns"
 import { Clock, Circle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -14,6 +13,19 @@ interface ActivityItem {
 
 interface ActivityFeedProps {
   activities: ActivityItem[]
+}
+
+function formatShortTime(date: Date): string {
+  const now = new Date()
+  const diffMs = now.getTime() - date.getTime()
+  const diffMins = Math.floor(diffMs / (1000 * 60))
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+  if (diffMins < 1) return "now"
+  if (diffMins < 60) return `${diffMins}m ago`
+  if (diffHours < 24) return `${diffHours}h ago`
+  return `${diffDays}d ago`
 }
 
 export function ActivityFeed({ activities }: ActivityFeedProps) {
@@ -37,7 +49,7 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
   }
 
   return (
-    <Card className="card-hover h-full border-border/60">
+    <Card className="card-hover h-full border-border/60" data-testid="activity-feed">
       <CardHeader className="flex flex-row items-center gap-2 pb-3">
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/50">
           <Clock className="h-3.5 w-3.5 text-muted-foreground" />
@@ -74,7 +86,7 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
                           <span className="text-muted-foreground/40">•</span>
                         </>
                       )}
-                      <span>{formatDistanceToNow(activity.timestamp, { addSuffix: true })}</span>
+                      <span>{formatShortTime(activity.timestamp)}</span>
                     </div>
                   </div>
                 </div>

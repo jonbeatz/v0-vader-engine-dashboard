@@ -59,7 +59,7 @@ export function SandboxCard({
   const config = statusConfig[status]
 
   return (
-    <Card className="card-hover relative overflow-hidden border-border/60">
+    <Card className="card-hover relative overflow-hidden border-border/60" data-testid={`sandbox-card-${port}`}>
       {/* Status indicator line */}
       <div className={cn(
         "absolute left-0 top-0 h-full w-0.5",

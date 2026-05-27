@@ -103,7 +103,7 @@ export default function ProtocolsPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
-        <Card>
+        <Card data-testid="protocol-readiness-card">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Total Protocols</CardTitle>
             <ScrollText className="h-4 w-4 text-muted-foreground" />

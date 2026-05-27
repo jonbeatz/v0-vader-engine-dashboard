@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Sidebar } from "@/components/dashboard/sidebar"
 import { Header } from "@/components/dashboard/header"
 import { Footer } from "@/components/dashboard/footer"
+import { CommandBar } from "@/components/dashboard/command-bar"
 import { CommandPalette } from "@/components/dashboard/command-palette"
 import {
   AlertDialog,
@@ -61,12 +62,14 @@ export function AppShell({ children }: AppShellProps) {
       <Sidebar />
       <Header onCommandOpen={() => setCommandOpen(true)} />
       
-      <main className="ml-[220px] min-h-screen pb-14 pt-12">
+      {/* Main content area with proper spacing for header (48px), command bar (40px), footer (40px) */}
+      <main className="ml-[220px] min-h-screen pb-24 pt-12">
         <div className="p-6">
           {children}
         </div>
       </main>
       
+      <CommandBar onOpenCommandPalette={() => setCommandOpen(true)} />
       <Footer />
       
       <CommandPalette
@@ -79,7 +82,7 @@ export function AppShell({ children }: AppShellProps) {
       
       {/* Kill Port Dialog */}
       <AlertDialog open={killPortDialogOpen} onOpenChange={setKillPortDialogOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="border-border/60 bg-card">
           <AlertDialogHeader>
             <AlertDialogTitle>Kill Port</AlertDialogTitle>
             <AlertDialogDescription>
@@ -97,7 +100,7 @@ export function AppShell({ children }: AppShellProps) {
             />
           </div>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setPortToKill("")}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel onClick={() => setPortToKill("")} className="border-border/60">Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleKillPort}
               data-testid="kill-port-confirm"
@@ -111,7 +114,7 @@ export function AppShell({ children }: AppShellProps) {
       
       {/* Stop Sandbox Dialog */}
       <AlertDialog open={stopSandboxDialogOpen} onOpenChange={setStopSandboxDialogOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="border-border/60 bg-card">
           <AlertDialogHeader>
             <AlertDialogTitle>Stop Sandbox</AlertDialogTitle>
             <AlertDialogDescription>
@@ -129,7 +132,7 @@ export function AppShell({ children }: AppShellProps) {
             />
           </div>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setSandboxToStop("")}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel onClick={() => setSandboxToStop("")} className="border-border/60">Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleStopSandbox}
               data-testid="stop-sandbox-confirm"
