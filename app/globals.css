@@ -253,16 +253,31 @@ button[data-variant="outline"]:hover {
   background: rgba(18, 18, 18, 0.8) !important;
 }
 
-/* 6. Border Glow effect - subtle light grey, outer edge only, NO scale */
+/* 6. Border Glow effect - subtle light grey, outer edge only, NO scale, NO red */
 .card-glass-gleam {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-glass-gleam:hover {
-  border-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: #3a3a3a !important;
   box-shadow: 
     0 4px 12px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Override ALL card hover states to use grey, not red */
+[data-slot="card"]:hover,
+.card-hover:hover {
+  border-color: #3a3a3a !important;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Override focus ring to be grey instead of red */
+*:focus-visible {
+  outline: 2px solid #3a3a3a !important;
+  outline-offset: 2px;
 }
 
 /* Remove ALL scale/transform from cards */

@@ -130,14 +130,14 @@ export function SandboxCard({
                 </AlertDialogContent>
               </AlertDialog>
               
-              <Button size="sm" variant="outline" onClick={onRestart} className="border-border/60 hover:border-primary/30">
+              <Button size="sm" variant="outline" onClick={onRestart} className="border-border/60 hover:border-border">
                 <RefreshCw className="h-3 w-3" />
               </Button>
             </>
           )}
           
           {status === "running" && (
-            <Button size="sm" variant="outline" asChild className="border-border/60 hover:border-primary/30">
+            <Button size="sm" variant="outline" asChild className="border-border/60 hover:border-border">
               <a href={`http://localhost:${port}`} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="h-3 w-3" />
               </a>
